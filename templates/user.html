@@ -1,0 +1,73 @@
+{% from "_formhelpers.html" import render_tweet_field %}{% extends 'base.html'
+%} {% block title %}User Page{% endblock%} {% block hero_title %}User Information{% endblock %} {% block hero_subtitle %}Information for User: {{user.username}}{% endblock %} {% block content%}
+<section class="section">
+<div class="container">
+	<div class="columns">
+		<div class="column is-4 is-offset-4 has-text-centered">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Username: {{user.username}}</p>
+                            <p class="subtitle is-6 mt-3"><b>Full Name:</b> {{user.full_name}}</p>
+                            <p class="subtitle is-6"><b>Email:</b> {{user.email}}</p>
+                        </div>
+                    </div>
+                    <div class="box has-text-centered">
+                    <div class="field is-grouped is-flex is-justify-content-center">
+                        <p class="control">
+                          <a class="button is-primary" href="/users/{{user.username}}/feedback/add">
+                            Add Feedback
+                          </a>
+                        </p>
+                        <p class="control">
+                          <a class="button is-danger" href="/users/{{user.username}}/delete">
+                            Delete User
+                          </a>
+                        </p>
+                    </div>
+                </div>
+                </div>    
+            </div>    
+		</div>
+	<div>
+</div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            {% for feedback in user.feedback %}
+            <div class="column is-one-quarter mt-0">
+                <div class="box">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>{{feedback.username}}</strong>
+                                <br />
+                                <p class="is-flex is-flex-wrap-wrap is-justify-content-center">{{feedback.content}}</p>
+                            </p>
+                        </div>
+                        {% if session["username"] == feedback.username or session["is_admin"] == true %}
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <a class="level-item" href="/feedback/{{feedback.id}}/update">
+                                    <span class="icon is-small"><i class="fas fa-edit"></i></span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="media-right">
+                        <form action="/feedback/{{feedback.id}}/delete" method="POST">
+                        <button class="delete"></button>
+                    </form>
+                    </div>
+                    {% endif %}
+                </article>
+            </div>
+         </div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+{% endblock %}

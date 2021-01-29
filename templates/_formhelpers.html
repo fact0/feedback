@@ -1,0 +1,37 @@
+{% macro render_input_field(field) %}
+<div class="field">
+	{{ field.label(class_="label is-small") }}
+	<div class="control">{{ field(class_="input my-2") }}</div>
+	{% for err in field.errors %}
+	<p class="help is-danger">{{ err }}</p>
+	{% endfor %}
+</div>
+{% endmacro %} {% macro render_textarea_field(field) %}
+<div class="field">
+	<p class="control">
+		{{ field.label(class_="label is-small") }} {{ field(class_="input my-2
+		is-clipped",style="height: 100px;",placeholder="Add feedback text...") }}
+	</p>
+	{% for err in field.errors %}
+	<p class="help is-danger">{{ err }}</p>
+	{% endfor %}
+</div>
+{% endmacro %} {% macro render_upload_field(field) %}
+<div class="field">
+	<label class="label is-small" for="photo">{{field}} Upload</label>
+	<div class="control my-2">
+		<div id="file-js" class="file is-info is-fullwidth is-right has-name">
+			<label class="file-label">
+				{{field(class_="file-input")}}
+				<span class="file-cta">
+					<span class="file-icon">
+						<i class="fas fa-upload"></i>
+					</span>
+					<span class="file-label"> Image File... </span>
+				</span>
+				<span class="file-name"> No file selected... </span>
+			</label>
+		</div>
+	</div>
+</div>
+{% endmacro %}

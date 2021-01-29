@@ -1,0 +1,20 @@
+{% from "_formhelpers.html" import render_input_field, render_textarea_field
+%}{% extends 'base.html' %} {% block title %}Feedback Form{% endblock%} {% block
+hero_title %}Feedback Form{% endblock %} {% block hero_subtitle %}Fill out the
+form to {{text}} feedback entry{% endblock %} {% block content%}
+<div class="container mt-0">
+	<div class="column is-4 is-offset-4 has-text-left">
+		<section>
+			<form method="POST">
+				{{ form.hidden_tag() }}{{ render_input_field(form.title)}} {{
+				render_textarea_field(form.content)}}
+				<div class="field is-pulled-right">
+					<div class="control">
+						<button class="button is-primary">Submit Feedback</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</div>
+{% endblock %}

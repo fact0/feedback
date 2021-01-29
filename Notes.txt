@@ -1,0 +1,11 @@
+Time taken: about 7 hours
+
+improvements:
+
+some styling things but not a big deal, stop using the hero layout ive made, confirmation for deleting things using a modal, easier way to add admin accounts.
+
+try the email password recovery mentioned in the further study
+
+clean up redundant code
+
+add a couple more tests, how to test if something is still in the database or still in session.

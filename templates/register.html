@@ -1,0 +1,20 @@
+{% from "_formhelpers.html" import render_input_field %}{% extends 'base.html'
+%} {% block title %}Register{% endblock%} {% block hero_title %}Register{%
+endblock %} {% block hero_subtitle %}Enter your information to create an
+account{% endblock %} {% block content%}
+<div class="container mt-0">
+	<div class="column is-4 is-offset-4 has-text-left">
+		<section>
+			<form method="POST">
+				{{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+				'hidden' %} {{ render_input_field(field)}} {% endfor %}
+				<div class="field is-pulled-right">
+					<div class="control">
+						<button class="button is-primary">Register</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</div>
+{% endblock %}
